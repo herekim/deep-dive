@@ -4,52 +4,123 @@ sidebar_position: 4
 
 # 4장 변수
 
-Documents are **groups of pages** connected through:
+## 4.1 변수란 무엇인가? 왜 필요한가?
 
-- a **sidebar**
-- **previous/next navigation**
-- **versioning**
-
-## Create your first Doc
-
-Create a markdown file at `docs/hello.md`:
-
-```md title="docs/hello.md"
-# Hello
-
-This is my **first Docusaurus document**!
-```
-
-A new document is now available at `http://localhost:3000/docs/hello`.
-
-## Configure the Sidebar
-
-Docusaurus automatically **creates a sidebar** from the `docs` folder.
-
-Add metadata to customize the sidebar label and position:
-
-```md title="docs/hello.md" {1-4}
----
-sidebar_label: "Hi!"
-sidebar_position: 3
 ---
 
-# Hello
+**"변수는 하나의 값을 저장하기 위해 확보한 메모리 공간 자체 또는 그 메모리 공간을 식별하기 위해 붙인 이름을 말한다."**
 
-This is my **first Docusaurus document**!
+```javascript
+let importantID = 400 + 89;
 ```
 
-It is also possible to create your sidebar explicitly in `sidebars.js`:
+위 코드에서 'importantID'가 변수 이름(식별자)이다. 400 + 89은 새로운 값 489을 만들고 특정 메모리 공간에 저장된다.
+이때 메모리 공간은 메모리 주소와 연결되어 있으며 변수 이름 'importantID'를 통해 30이 저장된 메모리 공간으로 접근할 수 있는 것이다.
 
-```diff title="sidebars.js"
-module.exports = {
-  tutorialSidebar: [
-    {
-      type: 'category',
-      label: 'Tutorial',
--     items: [...],
-+     items: ['hello'],
-    },
-  ],
-};
+<img src="https://junwoo45.github.io/static/f54c8aca9e992ebec4f7954c57812dea/3ac88/memory10.jpg" width="400" />
+<br/>
+<br/>
+
+## 4.2 식별자
+
+---
+
+위 설명과 같이 식별자는 변수 이름이다. 하지만 변수 이름에만 국한해서 사용되지는 않는다. 예를 들어 변수, 함수, 클래스 등의 이름은 모두 식별자다.
+즉, **메모리 상에 존재하는 어떤 값을 식별할 수 있는 이름은 모두 식별자**라고 부른다.
+
+## 4.3 변수 선언
+
+---
+
+변수 선언이란 값을 저장하기 위한 메모리 공간을 확보하고, 변수 이름과 확보된 메모리 공간의 주소를 연결해서 값을 저장할 수 있게 준비하는 작업이다.
+
+변수를 저장하기 위해서는 반드시 선언이 필요한데, 기존 var와 ES6 이후 추가된 let, const를 사용한다.(var는 개념과 문제점만 파악하고 실제로는 let과 const를 쓰자.)
+
+## 4.4 변수 선언의 실행 시점과 변수 호이스팅
+
+---
+
+```javascript
+console.log(score); //undefined
+
+var score;
 ```
+
+위 코드의 결과는 에러가 아닌 undefined이다. 보통 프로그래밍 언어에서는 발생하지 않는 문제로, 이를 호이스팅이라고 한다.
+마치 변수 선언이 코드의 가장 위로 끌어올려진 것처럼 동작해서 붙여진 이름이다. 이 현상이 왜 발생하는지 살펴보자.
+
+자바스크립트 엔진은 변수 선언을 2단계로 나누어 진행한다.
+
+**선언단계:** 변수 이름을 등록해서 자바스크립트 엔진에 변수의 존재를 알린다.  
+**초기화단계:** 값을 저장하기 위한 메모리 공간을 확보하고 임의로 undefined를 할당한다.
+
+var는 2단계를 한번에 수행한다. 또한 이 단계는 런타임이 아니라 소스코드 평가 과정에서 진행된다. 하지만 자바스크립트는 인터프리터 언어이다.
+즉, 런타임 실행 시 한줄씩 코드를 실행한다. 그러므로 이를 종합해보면 소스코드 평가 과정에서 이미 자바스크립트 엔진은 var로 선언된 변수이름을
+undefined로 할당해놓는다. 그 다음 런타임이 실행되어서 console.log(score)를 실행하면 할당된 undefined를 출력하는 것이다.
+
+사실 호이스팅은 변수 선언 키워드 var 뿐만 아니라 let, const, function, class 등 모든 식별자에서 나타나는 현상이다.
+모든 선언문은 런타임 이전 단계에서 먼저 실행되기 때문이다.
+
+## 4.5 값의 할당
+
+---
+
+변수 선언과 값의 할당
+
+```javascript
+var score; // 변수 선언
+score = 80; // 값의 할당
+```
+
+단축 표현
+
+```javascript
+var score = 80;
+```
+
+위 두 코드는 정확히 동일하게 동작한다. 단축 표현으로 작성해도 변수 선언과 값의 할당을 나누어 각각 실행된다.
+주의할 점은 변수 선언 시점과 값의 할당 시점이 다르다는 것이다. 변수 선언은 런타임 전에 실행되지만 값의 할당은
+런타임에 실행된다.
+
+```javascript
+console.log(score); // (1)
+
+score = 80;
+var score;
+
+console.log(score); // (2)
+```
+
+위 코드를 실행시켜보자. 어떤 결과를 예상할 수 있을까? 정답은 (1) undefined (2) 80이다. 왜냐하면
+(1)이 실행될 때에는 런타임 이전에 이미 변수 선언이 완료된 상황이므로 임의로 할당된 undefined를 배출하기 때문이고,
+(2)가 실행될 때에는 변수명 score에 할당된 80이 배출되기 때문이다.
+
+## 4.6 값의 재할당
+
+---
+
+```javascript
+var score;
+score = 80;
+score = 90;
+```
+
+위 코드는 어떻게 동작할까? 우선 변수명 score이 선언되고 생생된 메모리 공간에 undefined가 할당된다.
+그리고 두번째 줄에서 80이 할당되고, 세번째 줄에서 90이 재할당된다. 엄밀히 따지면 세번째 줄 뿐만 아니라 두번째 줄의 80도
+이미 할당된 undefined가 아니라 80이 할당된 것이므로 재할당이라고 볼 수 있다.
+
+변수에 값을 재할당하면 기존 값을 삭제하고 새로운 값이 들어가는 것이 아니라 재할당하는 값에 대한 새로운 메모리 주소와 공간을
+확보하고 새로운 값을 재할당하는 것이다.
+
+키워드 const는 변수에 대한 재할당을 금지한다. "변수에 대한"이라는 키워드를 기억하자. 뒤에서 나올 const 키워드에서
+왜 변수만 재할당을 금지하는지 알 수 있다.
+
+## 4.7 식별자 네이밍 규칙
+
+---
+
+식별자의 네이밍 규칙을 간단하게 알아보자.
+
+- 식별자는 특수문자를 제외한 문자, 숫자, 언더스코어, 달러 기호를 포함할 수 있다.
+- 단, 특수문자를 제외한 문자, 언더스코어, 달러 기호로 시작해야 한다. 숫자로 시작하는 것은 허용하지 않는다.
+- 예약어는 식별자로 사용할 수 없다.
