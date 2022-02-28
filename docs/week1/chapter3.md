@@ -4,31 +4,55 @@ sidebar_position: 3
 
 # 3장 자바스크립트 개발 환경과 실행 방법
 
-Docusaurus creates a **page for each blog post**, but also a **blog index page**, a **tag system**, an **RSS** feed...
+## 3.1 자바스크립트 실행 환경
 
-## Create your first Post
+<img src="https://poiemaweb.com/assets/fs-images/3-1.png" width="400" />
+<br/>
+<br/>
 
-Create a file at `blog/2021-02-28-greetings.md`:
+자바스크립트의 실행 환경은 두 가지로 나눌 수 있다. 각 브라우저에 내장된 브라우저 환경, Node.js 환경.
+위 이미지와 같이 Node.js는 Web API를 지원하지 않고, 브라우저 환경에서는 Node.js Host API를 지원하지 않는다.
 
-```md title="blog/2021-02-28-greetings.md"
----
-slug: greetings
-title: Greetings!
-authors:
-  - name: Joel Marcey
-    title: Co-creator of Docusaurus 1
-    url: https://github.com/JoelMarcey
-    image_url: https://github.com/JoelMarcey.png
-  - name: Sébastien Lorber
-    title: Docusaurus maintainer
-    url: https://sebastienlorber.com
-    image_url: https://github.com/slorber.png
-tags: [greetings]
----
+## 3.2 웹 브라우저
 
-Congratulations, you have made your first post!
+크롬 브라우저를 기준으로 작성한다.
 
-Feel free to play around and edit this post as much you like.
-```
+### 3.2.1 개발자 도구
 
-A new blog post is now available at `http://localhost:3000/blog/greetings`.
+개발자 도구는 각 브라우저에 내장되어 있으므로 따로 설치할 필요가 없다.
+
+**Elements**.
+로딩된 웹페이지의 DOM과 CSS를 편집해서 렌더링된 뷰를 확인해 볼 수 있다.  
+**Console**.
+로딩된 웹페이지의 에러를 확인하거나 소스코드로 작성한 console.log 메서드의 실행 결과를 확인할 수 있다.  
+**Sources**.
+로딩된 웹페이지의 자바스크립트 코드를 디버깅할 수 있다.  
+**Network**.
+로딩된 웹페이지에 관련된 네트워크 요청 정보와 성능 확인이 가능하다.  
+**Application**.
+웹 스토리지, 세션, 쿠키를 확인하고 관리할 수 있다.
+
+**콘솔**
+
+개발자 도구의 console 패널은 에러가 발생했을 때 가장 먼저 확인해야할 패널이다.
+구현 단계에서 디버깅을 실행하는 것보다 console.log 메소드로 코드를 평가해서 간편하게 코드 구현을 확인할 수도 있다.
+(사실상 가장 많이 사용하는 기능)
+
+그 밖에 패널을 확인하는 방법이 많으니 찾아보면서 적용하면 된다.
+[e.g. 디버깅하는 방법](https://ko.javascript.info/debugging-chrome)
+
+## 3.3 Node.js
+
+간단한 웹 어플리케이션은 브라우저만으로도 충분히 개발 가능하다. 하지만 규모가 있는 프로젝트의 경우
+React, Lodash와 같은 프레임워크, 라이브러리를 도입하거나 Babel, Webpack, ESLint 등 여러가지
+도구를 사용할 필요가 있다. 이때 사용하는 것이 자바스크립트 실행환경 Node.js와 자바스크립트 패키지 매니저 npm 이다.
+
+## 그 밖에
+
+**비주얼 스튜디오 코드**  
+브라우저 콘솔 또는 Node.js의 REPL에서 자바스크립트 코드를 실행할 수 있지만 코드 에디터를 사용하면
+코드 자동 완성, 문법 오류 감지, 디버깅, Git 연동 등 강력하고 편리한 기능을 사용할 수 있다.
+그 중 가장 인기가 있는 코드 에디터가 비주얼 스튜디오 코드이다.
+비주얼 스튜디오 코드에는 내장 터미널이 있어서 Ctrl + ` 를 누르면 내장 터미널이 열리고, Node.js 명령어로
+자바스크립트 파일을 실행할 수 있다. 또한 Code Runner(Node.js 환경), Live Server(브라우저 환경) 확장 플러그인을 통해
+소스코드를 다양한 환경에서 실행할 수 있다.
