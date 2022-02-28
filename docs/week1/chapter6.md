@@ -4,31 +4,139 @@ sidebar_position: 6
 
 # 6장 데이터 타입
 
-Docusaurus creates a **page for each blog post**, but also a **blog index page**, a **tag system**, an **RSS** feed...
+자바스크립트는 총 7개의 데이터 타입을 지원한다.
 
-## Create your first Post
+<img src="https://miro.medium.com/max/1400/1*7yTWhFuO1pvpD00yzU6_nw.png" width="700"/>
 
-Create a file at `blog/2021-02-28-greetings.md`:
+## 6.1 숫자 타입
 
-```md title="blog/2021-02-28-greetings.md"
----
-slug: greetings
-title: Greetings!
-authors:
-  - name: Joel Marcey
-    title: Co-creator of Docusaurus 1
-    url: https://github.com/JoelMarcey
-    image_url: https://github.com/JoelMarcey.png
-  - name: Sébastien Lorber
-    title: Docusaurus maintainer
-    url: https://sebastienlorber.com
-    image_url: https://github.com/slorber.png
-tags: [greetings]
 ---
 
-Congratulations, you have made your first post!
+C나 자바의 경우 int, float, double 등 다양한 숫자 타입을 지원한다.
+하지만 자바스크립트의 경우 number 하나만 존재한다. ECMAScript 사양에 따르면 숫자 타입의
+값은 배정밀도 64비트 부동소수점 형식을 따른다. 모든 수를 실수로 처리하며 정수만 표현하기 위한 데이터 타입은
+존재하지 않는다.
 
-Feel free to play around and edit this post as much you like.
+```javascript
+let integer = 10; //정수
+console.log(typeof integer); // number
+
+let double = 10.12; //실수
+console.log(typeof double); // number
+
+let negative = -20; //음의 정수
+console.log(typeof negative); // number
 ```
 
-A new blog post is now available at `http://localhost:3000/blog/greetings`.
+## 6.2 문자열 타입
+
+---
+
+문자열 타입은 텍스트 데이터를 표현한다. 0개 이상의 16비트 유니코드 문자(UTF-16)의 집합으로 전 세계
+대부분의 문자를 표현할 수 있다.
+
+문자열은 '', "", `` 으로 표현할 수 있다.
+
+## 6.3 템플릿 리터럴
+
+---
+
+ES6에 추가된 문자열 표기법. 기존 문자열 표기법과 비교해 개행과 표현식 삽입이 가능해졌다.
+
+```javascript
+//기존 표기법의 개행
+let template = "hello\nworld";
+
+//템플릿 리터릴의 개행
+let template = `hello
+world`;
+
+let first = 'heeyeol;
+let last = 'Kim'
+
+//기존 표기법의 표현식 삽입
+console.log('My name is' + first + ' ' + last + '.');
+
+//템플릿 리터럴의 표현식 삽입
+console.log(`My name is ${first} ${last}.`)
+```
+
+## 6.4 불리언 타입
+
+---
+
+불리언 타입은 true, false 두 가지 뿐이다. 흐름 제어를 하는 조건문에서 주로 사용된다.
+
+## 6.5 undefined 타입
+
+---
+
+앞서 변수 챕터에서 var 키워드는 변수 초기화까지 한번에 진행되면서 undefined를 임의로 할당한다고 했다.
+이처럼 undefined는 자바스크립트 엔진이 변수의 빈 값을 임의로 넣을 때 사용한다. 주의할 점은 개발자가
+임의로 빈 값을 넣을 때 undefined를 넣을 경우 본래 취지와 어긋나기 때문에 지양해야 한다.
+
+## 6.6 null 타입
+
+---
+
+개발자가 임의로 빈 값을 넣고 싶은 때 사용하는 값이 바로 null이다. null 타입의 값은 null이 유일하다.
+
+## 6.7 심볼 타입
+
+---
+
+심볼 값은 다른 값과 중복되지 않는 유일무이한 값이다. 따라서 주로 이름이 충돌할 위험이 없는
+객체의 유일한 프로퍼티 키를 만들기 위해 사용한다.
+
+```javascript
+let key = Symbol("key");
+console.log(typeof key); //symbol
+
+let obj = {};
+
+// obj[key] = "value";
+console.log(obj[key]); //value
+```
+
+## 6.8 객체 타입
+
+---
+
+자바스크립트 데이터 타입은 6개의 원시 타입과 객체 타입으로 이루어져 있다. 즉, 원시 타입을 제외한 나머지
+모든 타입은 객체 타입인 것이다. 객체 타입에 대해서는 후술로 자세하게 설명할 예정이다.
+
+## 6.9 데이터 타입의 필요성
+
+---
+
+데이터 타입은 그 타입에 따라 확보해야 할 메모리 공간이 다르다. 예를 들어 숫자 타입의 경우 배정밀도
+64비트 부동소수점 형식을 사용한다. 반면 문자열은 특별히 정해진 규칙이 없다. 전체 글자 수가 가변적이고,
+한글은 2바이트, 영어는 1바이트로 각각 필요한 메모리 용량 또한 다르기 때문이다.
+
+또한 메모리에서 읽어 들은 2진수를 어떻게 해석하는지도 문제이다. 데이터 타입이 없다면 2진수가
+문자열로 해석되어야 할 지, 숫자로 해석되어야 할 지 모른다. 이를 정리하면
+
+- 값을 저장할 때 확보해야 하는 메모리 공간의 크기를 결정하기 위해
+- 값을 참조할 때 한 번에 읽어들여야 할 메모르 공간의 크기를 결정하기 위해
+- 메모리에서 읽어 들인 2진수를 어떻게 해석할지 결정하기 위해
+
+## 6.10 동적 타이핑
+
+---
+
+자바스크립트는 동적 타이핑 언어이다. 정적 타입 언어(e.g. C, Java ...)는 변수를 선언할 때 변수에 할당할 수 있는
+데이터 타입을 미리 명시해야 한다. 이를 명시적 타입 선언이라고 한다. 하지만 자바스크립트는 var, let, const 키워드를
+이용해 변수를 선언할 뿐 데이터 타입을 지정하지 않는다.
+
+자바스크립트의 변수는 선언이 아닌 할당에 의해 타입이 결정되는 것이다. 즉 재할당에 의해 언제든 동적으로
+변수의 타입이 변할 수 있다. 동적 타입 언어는 유연하다. 그렇기 때문에 작고 빠르게 개발되어야 하는 환경에서는
+더 유리할 수 있다. 하지만 값의 변경에 의해 타입도 자유롭게 바뀔 수 있기 때문에 신뢰성이 떨어진다. 주의해야할 사항이
+많아진다. 타입스크립트가 탄생한 이유도 바로 이 때문이다.
+
+```typescript
+let a: string = "text"; // 문자열
+let b: number = 0; // 숫자형
+let c: boolean = true; // 논리형
+let d: any = true; // 어떤 타입이 올지 모를 때
+let e: string | number = "0"; // 문자열이나 숫자가 올 때
+```
