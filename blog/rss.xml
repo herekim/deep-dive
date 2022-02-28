@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Modern JavaScript Blog</title>
-        <link>https://deepdive.github.io/deepdive/blog</link>
+        <link>https://deep-dive.github.io/deepdive/blog</link>
         <description>Modern JavaScript Blog</description>
         <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[welcome]]></title>
-            <link>https://deepdive.github.io/deepdive/blog/2021/08/26/welcome</link>
+            <link>https://deep-dive.github.io/deepdive/blog/2021/08/26/welcome</link>
             <guid>/2021/08/26/welcome</guid>
             <pubDate>Thu, 26 Aug 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[<!-- ---]]></description>
         </item>
         <item>
             <title><![CDATA[MDX Blog Post]]></title>
-            <link>https://deepdive.github.io/deepdive/blog/mdx-blog-post</link>
+            <link>https://deep-dive.github.io/deepdive/blog/mdx-blog-post</link>
             <guid>mdx-blog-post</guid>
             <pubDate>Sun, 01 Aug 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[Blog posts support Docusaurus Markdown features, such as MDX.]]></description>
@@ -25,7 +25,7 @@
         </item>
         <item>
             <title><![CDATA[Long Blog Post]]></title>
-            <link>https://deepdive.github.io/deepdive/blog/long-blog-post</link>
+            <link>https://deep-dive.github.io/deepdive/blog/long-blog-post</link>
             <guid>long-blog-post</guid>
             <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[This is the summary of a very long blog post,]]></description>
@@ -35,7 +35,7 @@
         </item>
         <item>
             <title><![CDATA[first-blog-post]]></title>
-            <link>https://deepdive.github.io/deepdive/blog/2019/05/28/first-blog-post</link>
+            <link>https://deep-dive.github.io/deepdive/blog/2019/05/28/first-blog-post</link>
             <guid>/2019/05/28/first-blog-post</guid>
             <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[<!-- ---]]></description>
