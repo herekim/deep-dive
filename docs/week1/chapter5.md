@@ -4,28 +4,120 @@ sidebar_position: 5
 
 # 5장 표현식과 문
 
-Docusaurus is a **static-site-generator** (also called **[Jamstack](https://jamstack.org/)**).
+## 5.1 값
 
-It builds your site as simple **static HTML, JavaScript and CSS files**.
+---
 
-## Build your site
+**"값은 식(표현식)이 평가되어 생성된 결과를 말한다."**
 
-Build your site **for production**:
-
-```bash
-npm run build
+```javascript
+10 + 20; // 30
 ```
 
-The static files are generated in the `build` folder.
+위 표현식에서 값은 30이다.
 
-## Deploy your site
+모든 값은 데이터 타입을 가지며 메모리에 2진수의 나열로 저장된다. 변수는 하나의 값을 저장하기 위해
+확보한 메모리 공간 자체 또는 그 메모리 공간을 식별하기 위해 붙인 이름이다. 따라서 변수에 할당되는 것은 값이다.
 
-Test your production build locally:
+## 5.2 리터럴
 
-```bash
-npm run serve
+---
+
+**"리터럴은 사람이 이해할 수 있는 문자 또는 약속된 기호를 사용해 값을 생성하는 표기법을 말한다."**
+
+```javascript
+3;
 ```
 
-The `build` folder is now served at `http://localhost:3000/`.
+여기서 3은 숫자 리터럴이다. 사람이 이해할 수 있는 아라비아 숫자 3을 코드에 적으면 자바스크립트 엔진은
+이를 평가해 숫자 3을 생성해 메모리에 저장한다. 이 밖에도 리터럴은 정수 리터럴, 문자열 리터럴, null 리터럴
+객체 리터럴 등 다양한 종류가 있고, 이를 통해 다양한 값을 생성할 수 있다.
 
-You can now deploy the `build` folder **almost anywhere** easily, **for free** or very small cost (read the **[Deployment Guide](https://docusaurus.io/docs/deployment)**).
+## 5.3 표현식
+
+---
+
+**"표현식은 값으로 평가될 수 있는 문이다. 즉 표현식이 평가되면 새로운 값을 생성하거나 기존 값을 참조한다."**
+
+```javascript
+//리터럴 표현식
+10;
+("hello");
+
+//식별자 표현식
+sum;
+person.name;
+arr[1];
+
+// 연산자 표현식
+10 + 20;
+sum = 10;
+sum !== 20;
+
+// 함수/메서드 호출 표현식
+square();
+person.getName();
+```
+
+위 '문'들은 모두 표현식이다. 공통점은 값으로 평가될 수 있다는 것이다. 즉, 값으로 평가될 수 있는 것은 모두 표현식이다.
+
+## 5.4 문
+
+---
+
+**"문은 프로그램을 구성하는 기본 단위이자 최소 실행 단위다."**
+
+```javascript
+//변수 선언문
+var x;
+
+//변수 할당문
+x = 5;
+
+//함수 선언문
+function foo() {}
+
+//조건문
+if (x > 5) {
+  console.log(x);
+}
+
+//반복문
+for (var i = 0; i < 2; i++) {
+  console.log(i);
+}
+```
+
+위 코드는 모두 문이며, 문이 실행되면 명령이 실행되고 무슨 일인가가 일어나게 된다.
+
+## 5.5 세미콜론과 세미콜론 자동 삽입 기능
+
+---
+
+세미콜론(;)은 문의 종료를 뜻한다. 단 if문, for문, 함수 등 0개 이상의 코드 블럭 뒤에는 세미콜론을
+붙이지 않는다. 자바스크립트 엔진이 소스코드를 해석할 때 문의 끝이라고 예측되는 지점에 세미콜론을 자동으로
+붙여주는 기능이 수행되기 때문에 개발자가 직접 붙여야 하느냐는 논란이 있지만, 붙여야 한다는 의견이 다수이다.
+ESLint 같은 정적 분석 도구를 통해 자동으로 붙일 수 있으니 참고하자.
+
+## 5.6 표현식인 문과 표현식이 아닌 문
+
+---
+
+표현식은 문의 부분집합이다. 문은 표현식일 수도 표현식이 아닐 수도 있다. 쉽게 판별하는 방법이 있다.
+변수 키워드에 할당에 보는 것이다.
+
+```javascript
+//변수 선언문, 표현식이 아니다.
+var x;
+
+//변수 할당문, 표현식이다.
+x = 100;
+```
+
+```javascript
+//에러, 표현식이 아니다.
+var foo = var x;
+
+//foo는 100이 되므로 표현식이다.
+var foo = x = 100;
+```
