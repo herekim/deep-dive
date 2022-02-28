@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Create a Blog Post
+# 3장 자바스크립트 개발 환경과 실행 방법
 
 Docusaurus creates a **page for each blog post**, but also a **blog index page**, a **tag system**, an **RSS** feed...
 

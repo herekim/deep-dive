@@ -54,9 +54,9 @@ const config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "Tutorial",
+            label: "Deep Dive",
           },
-          { to: "/blog", label: "Blog", position: "left" },
+          { to: "/blog", label: "Members", position: "left" },
           {
             href: "https://github.com/facebook/docusaurus",
             label: "GitHub",
@@ -71,7 +71,7 @@ const config = {
             title: "Docs",
             items: [
               {
-                label: "Tutorial",
+                label: "Deep Dive",
                 to: "/docs/intro",
               },
             ],
@@ -97,7 +97,7 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
+                label: "Members",
                 to: "/blog",
               },
               {
