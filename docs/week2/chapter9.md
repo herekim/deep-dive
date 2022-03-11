@@ -170,10 +170,91 @@ Boolean(undefined); // false
 'Cat' || 'Dog' // 'Cat'
 ```
 
-논리곱 연산자는 두 개의 피연산자 모두 true로 평가될 때 true를 반환한다. 논리곱 연산자는 좌항에서 우항으로 평가가 진행된다. 첫 번째 연산자 'Cat'은 Truthy 값이다. 하지만 이 시점 까지는 위 표현식을 평가할 수 없다. 결국 두 번째 피연산자 'Dog'가 표현식의 평가 결과를 결정한다. 논리곱 연산자는 논리 연산의 결과를 결정하는 두 번째 피연산자, 즉 문자열 'Dog'를 그대로 반환한다. 논리합(||) 연산자도 동일하게 동작한다
+논리곱 연산자는 두 개의 피연산자 모두 true로 평가될 때 true를 반환한다. 논리곱 연산자는 좌항에서 우항으로 평가가 진행된다. 첫 번째 연산자 'Cat'은 Truthy 값이다. 하지만 이 시점 까지는 위 표현식을 평가할 수 없다. **결국 두 번째 피연산자가 표현식의 평가 결과를 결정한다. 논리곱 연산자는 논리 연산의 결과를 결정하는 두 번째 피연산자, 즉 문자열 'Dog'를 그대로 반환한다. 논리합(||) 연산자도 동일하게 동작한다.**
 
 논리합 연산자는 논리 연산의 결과를 결정한 첫 번 째 피연산자, 즉 문자열 'Cat'을 그대로 반환한다.
 
-이처럼 논리 연산의 결과를 결정하는 피연산자를 타입 변환하지 않고 그대로 반환하는데 이를 단축평가라 한다. 단축 평가는 표현식을 평가하는 도중에 평가 결과가 확정된 경우 나머지 평가 과정을 생략하는 것을 말한다.
+이처럼 논리 연산의 결과를 결정하는 피연산자를 타입 변환하지 않고 그대로 반환하는데 이를 단축평가라 한다. **단축 평가는 표현식을 평가하는 도중에 평가 결과가 확정된 경우 나머지 평가 과정을 생략하는 것을 말한다.**
 
+단축 평가는 다음 규칙을 따른다.
 
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fr6DmZ%2FbtranWAKjvg%2FcedwkctbE8GAHiF9RGnhSk%2Fimg.png" width="400" />
+
+단축 평가를 사용하면 if 문을 대체할 수 있다. 
+
+```javascript
+var done = true;
+var message = '';
+
+// done 이 true라면 message에 '완료'를 할당.
+message = done && '완료';
+console.log(message); // 완료
+```
+
+조건이 Falsy 값 일 때 무언가를 해야 한다면 논리합(||) 연산자 표현식으로 if 문을 대체할 수 있다.
+
+```javascript
+var done = false;
+var message = '';
+
+// done 이 false라면 message에 '미완료'를 할당.
+message = done || '미완료';
+console.log(message); // 미완료
+```
+
+객체를 가리키기를 기대하는 변수가 null 또는 undefined가 아닌지 확인하고 프로퍼티를 참조할 때
+
+---
+
+```javascript
+var elem = null;
+
+// elem이 null이나 undefined와 같은 Falsy 값이면 elem으로 평가되고
+// elem이 Truthy 값이면 elem.value로 평가된다.
+
+var value = elem && elem.value; // null
+```
+
+함수 매개변수에 기본값을 설정할 때
+
+---
+
+```javascript
+function getSTringLength(str = '') {
+  return str.length;
+}
+
+getSTringLength(); // 0
+getSTringLength('hi'); // 2
+```
+
+옵셔널 체이닝 연산자
+
+---
+
+ES11에서 도입된 옵셔널 체이닝 연산자 ?.는 좌항의 피연산자가 null 또는 undefined인 경우 undefined를 반환하고, 그렇지 않으면 우항의 프로퍼티 참조를 이어간다.
+
+논리 연산자 &&는 좌항 피연산자가 falsy 값이면 좌항 피연산자를 그대로 반환한다. 하지만 옵셔널 체이닝 연산자는 좌항 피연산자가 falsy 값이라도 null Ehsms undefined가 아니면 우항의 프로퍼티 참조를 이어간다.
+
+```javascript
+var str = '';
+
+// 문자열의 길이를 참조한다. 이때 좌항 피연산자가 falsy 값이라도 null 또는 undefined가 아니면 우항의 프로퍼티 참조를 이어간다.
+
+var length = str?.length;
+console.log(length); // 0
+```
+
+null 병합 연산자
+
+---
+
+null 병합 연산자 ??는 좌항의 피연산자가 null 또는 undefined인 경우 우항의 피연산자를 반환하고, 그렇지 않으면 좌항의 피연산자를 반환한다. null 병합 연산자 ??는 변수에 기본값을 설정할 때 유용하다.
+
+주의해야 할 점은 falsy 값 전체가 아닌 null 또는 undefined만 해당하므로, ''나 0이 기본값으로 유효하다면 예기치 않은 동작이 발생할 수 있다.
+
+```javascript
+var foo = '' || 'default';
+console.log(foo); // 'default'
+// ''이 기본값으로 유효하면 안될 때 이 경우 예기치 않은 동작이 발생할 수 있다.
+```
