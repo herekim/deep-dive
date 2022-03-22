@@ -13,7 +13,7 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "Kim-Heeyeol", // Usually your GitHub org/user name.
+  organizationName: "herekim", // Usually your GitHub org/user name.
   projectName: "deep-dive", // Usually your repo name.
   //
 
