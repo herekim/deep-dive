@@ -15,6 +15,7 @@ const config = {
   favicon: "img/favicon.ico",
   organizationName: "herekim", // Usually your GitHub org/user name.
   projectName: "deep-dive", // Usually your repo name.
+  trailingSlash: false,
   //
 
   presets: [
