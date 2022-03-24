@@ -341,12 +341,12 @@ Object.create 메서드를 통해 체인의 종점에 위치하는 객체를 생
 
 ### 객체 리터럴 내부에서 `__proto__` 에 의한 직접 상속
     
-    ```jsx
+  ```jsx
     const obj = {
-    y:20,
-    __proto__: myProto
+    	y:20,
+    	__proto__: myProto
     }
-    ```
+  ```
     
 
 ## 19.12 정적 프로퍼티/메서드
