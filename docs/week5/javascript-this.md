@@ -2,7 +2,7 @@
 sidebar_position: 21
 ---
 
-# 오늘의 주제 : javascript의 this
+# javascript의 this
 
 # 22장 this
 
