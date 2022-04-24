@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdeep_dive=self.webpackChunkdeep_dive||[]).push([[152],{8461:function(e){e.exports=JSON.parse('{"allTagsPath":"/deep-dive/blog/tags","slug":"/deep-dive/blog/tags/docusaurus","name":"docusaurus","count":2,"permalink":"/deep-dive/blog/tags/docusaurus"}')}}]);
