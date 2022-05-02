@@ -36,7 +36,9 @@ const user = { firstName: "heeyeol", lastName: "kim" };
 
 const { lastName, firstName } = user;
 const { lastName: ln, firstName: fn } = user;
+const { length } = user;
 
 console.log(lastName, firstName); // kim heeyeol
 console.log(ln, fn); // kim heeyeol
+console.log(length); // 2
 ```
