@@ -6,7 +6,7 @@ sidebar_position: 39
 
 ---
 
-![ex_screenshot](/static/img/client-server.png)
+![ex_screenshot](/img/client-server.png)
 
 1. 브라우저는 HTML, CSS, 자바스크립트, 이미지, 폰트 파일 등 렌더링에 필요한 리소스를 요청하고 서버로부터 응답을 받는다.
 2. 브라우저의 렌더링 엔진은 서버로부터 응답된 HTML과 CSS를 파싱하여 DOM과 CSSOM을 생성하고 이들을 결합하여 렌더 트리를 생성한다.
@@ -60,7 +60,7 @@ HTTP는 웹에서 브라우저와 서버가 통신하기 위한 프로토콜(규
 
 아래 과정은 DOM과 CSSOM이 결합되어 렌더 트리를 형성하고, HTML 요소의 레이아웃과 페인팅 처리를 하는 과정을 보여주는 다이어그램이다.
 
-![ex_screenshot](/static/img/render-tree.png)
+![ex_screenshot](/img/render-tree.png)
 
 다음과 같은 경우 레이아웃 계산과 페인팅이 재차 실행된다. 따라서 해당 과정은 경우에 따라 성능에 악영향을 미친다.
 
@@ -120,7 +120,7 @@ HTML 파싱 중에 script 태그를 만나면 자바스크립트 엔진에게 �
 
 더 확실한 해결 방법은 async, defer 어트리뷰트를 사용하는 것이다. 해당 어트리뷰트는 src를 통해 외부 자바스크립트 파일을 로드하는 경우에만 사용이 가능하다.
 
-![ex_screenshot](/static/img/script-load.png)
+![ex_screenshot](/img/script-load.png)
 
 ### async
 
