@@ -52,7 +52,7 @@ arr1.splice(1, 0, ...arr2);
 console.log(arr1); // [1, 2, 3, 4]
 ```
 
-> 예제3 : splice의 대체
+> 예제3 : slice 대체
 
 ```js
 let origin = [1, 2];
